@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'incognito';
+    src: url('../public/static/fonts/incognito.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #171f2b #0c1016;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #0c1016;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #171f2b;
+    border-radius: 999px;
+    border: 3px solid #ffffff;
+  }
+
+@layer components {
+    [title] {
+        position: relative;
+    }
+
+    [title]::after,
+    [title]::before {
+        visibility: hidden;
+    }
+
+    [title]:hover::after,
+    [title]:hover::before {
+        visibility: visible;
+    }
+
+    [title]::after {
+        content: attr(title);
+        position: absolute;
+        top: -125%;
+        left: calc(-(100%/2));
+        margin-left: 6px;
+        width: max-content;
+        background-color: #1A1A1A;
+        font-size: .752rem;
+        padding: 4px 8px;
+        border-radius: 999px;
+    }
+
+    [title]::before {
+        content: "";
+        position: absolute;
+        top: -38%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #1A1A1A transparent transparent transparent;
+    }
+}
+
+@layer utilities {
+  .title {
+    @apply text-transparent bg-gradient-to-br from-slate-400 to-white bg-clip-text;
+  }
+
+  .font-incognito {
+    font-family: 'incognito', sans-serif;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .nav-menu.show {
+    @apply flex flex-col top-0 right-0 fixed transition-all duration-300 bg-[#0B1121] w-3/4 backdrop-blur-md h-screen;
+  }
+
+  .bg-noise {
+    background-image: url('/noise-light.png');
+  }
+}
